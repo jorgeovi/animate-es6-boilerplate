@@ -15,6 +15,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("./package.json").version)
+    }),
     new HtmlWebpackPlugin({
       template: path.join(dirApp, 'index.html')
     })

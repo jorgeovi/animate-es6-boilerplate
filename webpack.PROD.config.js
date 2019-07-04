@@ -8,6 +8,8 @@ const buildApp = path.join(__dirname, 'build');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackGitHash = require('webpack-git-hash');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ArchivePlugin = require('webpack-archive-plugin');
 
 module.exports = {
   mode: 'production',
@@ -25,11 +27,21 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("./package.json").version)
+    }),
     new CleanWebpackPlugin(),
     new WebpackGitHash(),
     new HtmlWebpackPlugin({
       template: path.join(dirApp, 'index.html')
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/index.js', to: 'index.js' },
+      { context: 'src/images/', from: '**/*', to: 'images' },
+      { context: 'src/sounds/', from: '**/*', to: 'sounds' },
+      { context: 'src/css/', from: '**/*.css', to: 'css' }
+    ]),
+    new ArchivePlugin({format: 'zip', output: __dirname + '/dist/'+ require("./package.json").name + '_' + require("./package.json").version})
   ],
   devServer: {
     port: 9001,

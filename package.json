@@ -1,5 +1,5 @@
 {
-  "name": "webpack-prueba-0",
+  "name": "Animate_ES6_Boilerplate",
   "version": "1.0.1",
   "description": "",
   "main": "src/app.js",
@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.3",
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
     "webpack": "^4.33.0",

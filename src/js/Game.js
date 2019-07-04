@@ -6,6 +6,7 @@ class Game {
   }
 
   start() {
+    console.log('Starting application version ' + VERSION);
     exportRoot.gotoAndStop('app');
     this.container = exportRoot.mcMain;
     this._activateEvents();

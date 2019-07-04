@@ -12,7 +12,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ArchivePlugin = require('webpack-archive-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     bundle: path.join(dirApp, 'js/app')
   },
@@ -41,7 +41,7 @@ module.exports = {
       { context: 'src/sounds/', from: '**/*', to: 'sounds' },
       { context: 'src/css/', from: '**/*.css', to: 'css' }
     ]),
-    new ArchivePlugin({format: 'zip', output: __dirname + '/dist/'+ require("./package.json").name + '_PROD_' + require("./package.json").version})
+    new ArchivePlugin({format: 'zip', output: __dirname + '/dist/'+ require("./package.json").name + '_QA_' + require("./package.json").version})
   ],
   devServer: {
     port: 9001,
